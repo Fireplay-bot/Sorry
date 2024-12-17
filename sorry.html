@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry Page for Anika</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: pink;
+            overflow: hidden;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        .yes {
+            background-color: lightgreen;
+        }
+
+        .no {
+            background-color: lightcoral;
+        }
+
+        .animation-container {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .animation {
+            position: absolute;
+            width: 100px;
+            animation: float 5s infinite;
+        }
+
+        @keyframes float {
+            0% {transform: translateY(100vh) rotate(0deg);}
+            100% {transform: translateY(-100vh) rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>Do you love me?</h1>
+        <button class="button yes" onclick="yesLove()">Yes</button>
+        <button class="button no" onclick="noLove()" id="noButton">No</button>
+
+        <div class="animation-container">
+            <img src="flower.png" class="animation" style="left: 10%;">
+            <img src="cat.png" class="animation" style="left: 30%;">
+            <img src="chocolates.png" class="animation" style="left: 60%;">
+            <img src="cute-stuff.png" class="animation" style="left: 80%;">
+        </div>
+    </div>
+
+    <div id="nextPage" style="display: none;">
+        <h1>Anika, will you forgive me, my love?</h1>
+        <button class="button yes" onclick="yesForgive()">Yes</button>
+        <button class="button no" onclick="noForgive()" id="noForgiveButton">No</button>
+    </div>
+
+    <div id="celebrationPage" style="display: none;">
+        <h1>Thank you, my love!</h1>
+        <div class="animation-container">
+            <img src="firecracker.png" class="animation" style="left: 20%;">
+            <img src="flower.png" class="animation" style="left: 70%;">
+        </div>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const noForgiveButton = document.getElementById('noForgiveButton');
+
+        function yesLove() {
+            document.getElementById('main').style.display = 'none';
+            document.getElementById('nextPage').style.display = 'block';
+        }
+
+        function noLove() {
+            noButton.style.position = 'absolute';
+            noButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+        }
+
+        function yesForgive() {
+            document.getElementById('nextPage').style.display = 'none';
+            document.getElementById('celebrationPage').style.display = 'block';
+        }
+
+        function noForgive() {
+            const sticker = document.createElement('img');
+            sticker.src = `cat${Math.floor(Math.random() * 5) + 1}.png`;
+            sticker.style.width = '100px';
+            sticker.style.position = 'fixed';
+            sticker.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            sticker.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            document.body.appendChild(sticker);
+
+            const pleaseText = document.createElement('div');
+            pleaseText.innerText = 'Please...';
+            pleaseText.style.position = 'fixed';
+            pleaseText.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            pleaseText.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            pleaseText.style.fontSize = '24px';
+            pleaseText.style.color = 'red';
+            document.body.appendChild(pleaseText);
+
+            noForgiveButton.style.position = 'absolute';
+            noForgiveButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            noForgiveButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+        }
+    </script>
+</body>
+</html>
